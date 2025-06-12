@@ -1,0 +1,107 @@
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Full-screen gradient background */
+body {
+  background: linear-gradient(135deg, #ccffcc 0%, #ffcccc 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  background-color: #4CAF50;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  margin: 1rem
+}
+.button-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* align to the left */
+  gap: 0px; /* spacing between buttons */
+}
+
+.btn:hover {
+  background-color: #45a049;
+  transform: scale(1.03);
+}
+
+.btn:active {
+  background-color: #3e8e41;
+  transform: scale(0.98);
+}
+.auth-card {
+  background: transparent; /* semi-transparent */
+  backdrop-filter: blur(10px);         /* frosted glass effect */
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  padding: 2rem;
+  margin: 5rem;
+  width: 25rem;
+  color: #fff;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.auth-card h2{
+    text-align:center;
+    margin-bottom: 2rem;
+    color: #385434;
+}
+.auth-card input{
+    margin: 0.2rem;
+    padding: 0.75rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    border: 1px solid white;
+    width: 20rem;
+}
+.auth-card button{
+    
+    background-color:#4ea442 ;
+}
+.auth-card button :hover{
+    
+    background-color: white ;
+}
+.auth-card Link{
+    margin-top: 1rem;
+}
+.homepage-desc {
+    display: flex;
+    flex-direction: row;
+    gap: 20rem;
+    align-items: flex-start;
+}
+.homepage-desc p{
+  margin-left: 5rem;
+    width: 25rem;
+    text-align: left;
+}
+.homepage-desc h1{
+    text-align: left;
+    margin-left: 5rem;
+}
+.loginpage-icon{
+  margin-top: 50px;
+}
+.btn-cancel{
+  background-color: #cb4366;
+   align-items: center;
+}
+.btn-cancel:hover{
+  background-color: #cb4366;
+  transform: scale(1.03);
+ 
+}
