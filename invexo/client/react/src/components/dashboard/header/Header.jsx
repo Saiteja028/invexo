@@ -46,8 +46,8 @@ export default function Header({onLogout,title}) {
           {isDropdownOpen && (
             <div className="dropdown">
               <ul className="dropdown-list">
-                <li className="dropdown-item">Edit Profile</li>
-                <li className="dropdown-item">Change Image</li>
+                {/* <li className="dropdown-item">Edit Profile</li>
+                <li className="dropdown-item">Change Image</li> */}
                 <li className="dropdown-item" onClick={handleLogout} >Logout</li>
               </ul>
             </div>

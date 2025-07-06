@@ -67,12 +67,13 @@ const handleClosePopup=()=> setIsPopupOpen(!isPopupOpen)
   
   if(isLoading) return <div className='p-4'>Loading market data...</div>
   return (
+
     <div >
 
    
     {/* <StocksProvider > */}
 
-        <div className="stocks-page">
+        <div className="stocks-page content ${isSidebarOpen? 'sidebar-open': ''}">
           <div>
               <Header title="Stocks" className></Header>
           </div>
