@@ -19,12 +19,9 @@ const StocksComponent = () => {
   const [isLoading, setLoading] = useState(true)
   const [editStockId, setEditStockId] = useState(null);
   const [editingStockId, setEditingStockId] = useState(null);
-  const netP_L=0
-  // const {} = useContext(StocksProvider)
+  const [netPL,setNetPL]=useState(0);
+  const {isSidebarOpen} = useContext(LayoutContext)
 
-  // const handleSelect = (stock)=>{
-  //     console.log(`the selected stock is ${stock.name}`);
-  // }
   const handleSetData = ()=>{
       setAddStock(!addStock)
   }
@@ -37,7 +34,9 @@ const StocksComponent = () => {
         const response = await axios.get('http://localhost:3000/api/v1/userStocks',{
           withCredentials: true
         } )
-        setUserStocks(response.data || [])
+        setUserStocks(response.data.stocks || [])
+       setNetPL(response.data.netPL);
+
       } catch (error) {
           console.error(`failed to fetch data`, error);
       }
@@ -52,7 +51,9 @@ const StocksComponent = () => {
       const response = await axios.delete(`http://localhost:3000/api/v1/userStocks/${id}`,{
         withCredentials: true
       })
-      triggerRefresh(!needRefresh)
+      if(response.status===200){
+        triggerRefresh(!needRefresh)
+      }
   }
 const handleUpdate = async (data) =>{
     console.log(data);
@@ -61,7 +62,11 @@ const handleUpdate = async (data) =>{
     const response = await axios.patch(`http://localhost:3000/api/v1/userStocks/${data.stockId}`,data,{
         withCredentials: true
       })
-      triggerRefresh(!needRefresh)
+      if(response.status===200){
+        triggerRefresh(!needRefresh)
+        console.log("HI");
+        
+      }
 }
 const handleClosePopup=()=> setIsPopupOpen(!isPopupOpen)
   
@@ -73,17 +78,17 @@ const handleClosePopup=()=> setIsPopupOpen(!isPopupOpen)
    
     {/* <StocksProvider > */}
 
-        <div className="stocks-page content ${isSidebarOpen? 'sidebar-open': ''}">
+        <div className={`${isSidebarOpen? 'sidebar-open': ''}`}>
           <div>
               <Header title="Stocks" className></Header>
           </div>
           <div style={{display:'flex', flexDirection:"row" , alignItems:'center', gap: "1rem"}}>
             <button onClick={handleSetData}>Add Stock</button>
           </div>
+          <div>{`Net P&L: ${netPL}`}</div>
             {addStock && <StockDataForm onClose={handleSetData}  />}
-          <div >
-
-              <div className='stock-widget-grid'>
+          <div className='stock-widget-grid'>
+              <div >
                   {
                     userStocks.map((index, i)=>(
                      
@@ -92,8 +97,10 @@ const handleClosePopup=()=> setIsPopupOpen(!isPopupOpen)
                     
                       StockName={index.stockname}
                       BuyPrice={index.price}
-                      BuyQuantity={index.noOfStocks}              
+                      BuyQuantity={index.noOfStocks}   
+                      CurrentPrice={index.currentPrice}           
                       Brokerage={index.Brokerage}
+                      IndividualPL={index.individualPL}
                       StockId={index._id}
                       onDelete={handleDelteStock}
                       onUpdate={() => setEditingStockId(index._id)}

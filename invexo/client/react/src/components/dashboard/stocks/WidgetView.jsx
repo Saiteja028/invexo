@@ -4,7 +4,7 @@ import EditStockForm from './EditStockForm'
 
 // import StocksContext from './context-stocks/StocksCOntext'
 import './stocks.css'
-const WidgetView = ({StockName, BuyPrice, BuyQuantity,CurrentPrice, Brokerage, onDelete, StockId,onUpdate,onTrade}) => {
+const WidgetView = ({StockName, BuyPrice, BuyQuantity,CurrentPrice, Brokerage, onDelete, StockId,onUpdate,onTrade,IndividualPL}) => {
   const {isPopupOpen, setIsPopupOpen} = useContext(StocksContext);
    const {needRefresh, triggerRefresh} = useContext(StocksContext)
 
@@ -31,13 +31,12 @@ const handleTrade = (Brokerage) => {
   }
   console.log("clicked trade");
   
-  // triggerRefresh(!needRefresh)
-
 };
 
   
-  CurrentPrice=100
+
   return (
+
     <div className='stock-grid-items'>
       <h3>{StockName}</h3>
       <p><strong>Buy Quantity:</strong>{BuyQuantity}</p>
@@ -46,8 +45,7 @@ const handleTrade = (Brokerage) => {
       <p><strong> Brokerage:</strong>{Brokerage}</p>
       <p>
         <strong>P&amp;L: </strong>
-        {(CurrentPrice-BuyPrice) * BuyQuantity} (
-        {((CurrentPrice-BuyPrice)/BuyPrice * 100).toFixed(2)}%)
+       {IndividualPL}
       </p>
       {/* <a href="#">{Brokerage}</a> */}
       <div className='button-container'>

@@ -98,10 +98,9 @@ body {
 }
 .btn-cancel{
   background-color: #cb4366;
-   align-items: center;
+  align-items: center;
 }
 .btn-cancel:hover{
   background-color: #cb4366;
   transform: scale(1.03);
- 
 }

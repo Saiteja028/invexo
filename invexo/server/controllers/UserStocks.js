@@ -1,14 +1,42 @@
 import { StatusCodes } from "http-status-codes";
 import badRequestError from "../errors/badReqErr.js";
 import userStocksModel from "../models/stockData.js"
+import yahooFinance from "yahoo-finance2";
+import mongoose from "mongoose";
+// import { Promise } from "mongoose";
 /** @type {import('mongoose').Model<any>} */
 const Stocks = userStocksModel
 
 const getStocks = async (req,res)=>{
-    const userid= req.user.userid 
-    const response = await Stocks.find({userid})
-    res.status(StatusCodes.OK).json(response)
+    try {
+        const userID = req.user.userID
+
+        const userStocks = await Stocks.find({userID});
+        let netPL=0;
+        const stocksWithRealPrice = await Promise.all(
+            userStocks.map(async (stock)=>{
+
+                const quote = await yahooFinance.quote(`${stock.stockSymbol}.NS`);
+                const currentPrice= quote.regularMarketPrice;
+                const individualPL = (currentPrice - stock.price) * stock.noOfStocks;
+                netPL += individualPL;
+                return {
+                    ...stock._doc,
+                    currentPrice,
+                    individualPL:individualPL.toFixed(2)
+                }
+        })
+        )
+        res.status(StatusCodes.OK).json({
+            stocks:stocksWithRealPrice,
+            netPL: netPL.toFixed(2)
+        });
+    } catch (error) {
+        console.log(error);  
+        res.status(500).json({error: "failed to fetch the stock price"})      
+    }
 }
+
 
 const addStock = async (req,res)=>{
     
@@ -29,8 +57,7 @@ const deleteStock =async (req,res)=>{
     const ifExists = await Stocks.findById(symbol)
     if(!ifExists) throw new badRequestError(`Object with id ${symbol} not found`)
     const stock = await Stocks.findByIdAndDelete(symbol)
-    console.log(stock);
-    
+
     res.status(StatusCodes.OK).json(`thh stock with id ${symbol} deleted successfully`)
 
     
@@ -43,9 +70,13 @@ const editStock = async (req,res)=>{
         console.log(newData);
         
     const updatedData = await Stocks.findByIdAndUpdate(symbol_id, newData)
-console.log(updatedData);
+    console.log(updatedData);
 
     res.status(StatusCodes.OK).json(`thh stock with id ${symbol_id} udpated successfully`)
 }
+const getNetPL = async(req,res)=>{
+    const allStocks = await getStocks(req,res);
+    console.log(allStocks);
+}
 
-export  {addStock,deleteStock,editStock,getStocks}
+export  {addStock,deleteStock,editStock,getStocks,getNetPL}
