@@ -9,7 +9,7 @@ import WidgetView from './WidgetView'
 import { Loader } from 'lucide-react'
 import './stocks.css'
 import LayoutContext from '../../../contextapi/LayoutContext'
-import StocksContext from './context-stocks/StocksCOntext'
+import StocksContext from './context-stocks/StocksContext'
 import EditStockForm from './EditStockForm'
 const StocksComponent = () => {
   const [addStock, setAddStock] = useState(false)

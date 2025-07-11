@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import StocksContext from './StocksCOntext'
+import StocksContext from './StocksContext'
 import { useAsyncError } from 'react-router-dom'
 const StocksProvider = ({children}) => {
     const [addStock, createNewStock ]=useState('')
