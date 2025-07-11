@@ -1,12 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Header from '../header/Header'
-import Sidebar from '../Sidebar/SideBar'
-import SearchStock from './SearchStock'
 import StockDataForm from './StockDataForm'
-import StocksProvider from './context-stocks/StocksProvider'
+
 import axios from 'axios'
 import WidgetView from './WidgetView'
-import { Loader } from 'lucide-react'
 import './stocks.css'
 import LayoutContext from '../../../contextapi/LayoutContext'
 import StocksContext from './context-stocks/StocksContext'
@@ -17,7 +14,6 @@ const StocksComponent = () => {
   // const [isPopupOpen, setIsPopupOpen] = useState(false);
   const {isPopupOpen, setIsPopupOpen,needRefresh, triggerRefresh} = useContext(StocksContext);
   const [isLoading, setLoading] = useState(true)
-  const [editStockId, setEditStockId] = useState(null);
   const [editingStockId, setEditingStockId] = useState(null);
   const [netPL,setNetPL]=useState(0);
   const {isSidebarOpen} = useContext(LayoutContext)
@@ -56,19 +52,15 @@ const StocksComponent = () => {
       }
   }
 const handleUpdate = async (data) =>{
-    console.log(data);
-    
+ 
     setIsPopupOpen(true)
     const response = await axios.patch(`http://localhost:3000/api/v1/userStocks/${data.stockId}`,data,{
         withCredentials: true
       })
       if(response.status===200){
         triggerRefresh(!needRefresh)
-        console.log("HI");
-        
       }
 }
-const handleClosePopup=()=> setIsPopupOpen(!isPopupOpen)
   
   if(isLoading) return <div className='p-4'>Loading market data...</div>
   return (

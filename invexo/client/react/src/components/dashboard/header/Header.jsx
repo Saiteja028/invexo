@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { UserCircle, Menu } from "lucide-react";
 import Sidebar from "../Sidebar/SideBar";
-import './Header.css';
+import './header.css';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import MainDashboard from "../mainDashboard/MainDashboard";

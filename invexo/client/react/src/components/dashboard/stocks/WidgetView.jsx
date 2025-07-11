@@ -1,12 +1,10 @@
 import React, { useEffect , useContext} from 'react'
-import StocksContext from './context-stocks/StocksCOntext'
-import EditStockForm from './EditStockForm'
+import StocksContext from './context-stocks/StocksContext'
+
 
 // import StocksContext from './context-stocks/StocksCOntext'
 import './stocks.css'
-const WidgetView = ({StockName, BuyPrice, BuyQuantity,CurrentPrice, Brokerage, onDelete, StockId,onUpdate,onTrade,IndividualPL}) => {
-  const {isPopupOpen, setIsPopupOpen} = useContext(StocksContext);
-   const {needRefresh, triggerRefresh} = useContext(StocksContext)
+const WidgetView = ({StockName, BuyPrice, BuyQuantity,CurrentPrice, Brokerage, onDelete, StockId,onUpdate,IndividualPL}) => {
 
   const deleteStock = ()=>{
       onDelete(StockId)

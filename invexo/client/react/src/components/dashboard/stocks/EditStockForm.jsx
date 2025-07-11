@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React from 'react'
-import StocksContext from './context-stocks/StocksCOntext'
+import StocksContext from './context-stocks/StocksContext'
 import SearchStock from './SearchStock'
 import { useState, useContext, useEffect } from 'react'
 const EditStockForm = ({updateButton, onClose,StockName, BuyPrice, BuyQuantity,CurrentPrice, onDelete, StockId,StockSymbol,BrokerageName}) => {

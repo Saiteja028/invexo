@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import './stocks.css'
 import LayoutContext from '../../../contextapi/LayoutContext'
 import axios from 'axios'
-import StocksContext from './context-stocks/StocksCOntext'
+import StocksContext from './context-stocks/StocksContext'
 
 const SearchStock = ({onSelect}) => {
     // const [stock, setStockName] = useState('')

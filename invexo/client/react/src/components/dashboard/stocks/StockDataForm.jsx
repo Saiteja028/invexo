@@ -1,6 +1,6 @@
 import React, { useContext, useState , useEffect} from 'react'
 import axios from 'axios'
-import StocksContext from './context-stocks/StocksCOntext'
+import StocksContext from './context-stocks/StocksContext'
 import SearchStock from './SearchStock'
 import './stocks.css'
 const StockDataForm = ({onClose}) => {

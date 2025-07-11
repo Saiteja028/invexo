@@ -1,16 +1,14 @@
 import React, {useContext, useState} from "react";
 import './loginForm.css'
-import { Link } from "react-router-dom";
-import axios from 'axios'
+
 import image from '../../assets/registerpage.svg'
 import LoginContext from "../../contextapi/loginpage/LoginContext";
-import LayoutContext from "../../contextapi/LayoutContext";
 const LoginForm = ({onSubmit}) =>{
     // const [email, setEmail] = useState('')
     // const [password, setPassword] = useState('')
     const {email, setEmail} = useContext(LoginContext)
     const {password, setPassword} = useContext(LoginContext)
-    const loginData= {email,password}
+
     const handleSubmit = (e) => {
     e.preventDefault();
     if (typeof onSubmit === 'function') {
