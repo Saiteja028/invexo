@@ -1,0 +1,95 @@
+
+.header {
+  width:80rem;
+  background-color: white;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  position: relative;
+  z-index: 30;
+  
+}
+.header.sidebar-open{
+  width: calc(100% - 20px);
+  transition: 0;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.menu-icon {
+  width: 28px;
+  height: 28px;
+  color: #374151;
+}
+
+.header-title {
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: #1f2937;
+}
+
+.profile-menu {
+  position: relative;
+}
+
+.profile-icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.profile-icon {
+  width: 32px;
+  height: 32px;
+  color: #4b5563;
+}
+
+.profile-icon:hover {
+  color: #2563eb;
+}
+
+.dropdown {
+  position: absolute;
+  right: 0;
+  margin-top: 0.5rem;
+  width: 12rem;
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  z-index: 20;
+}
+
+.dropdown-list {
+  list-style: none;
+  padding: 0.5rem 0;
+  font-size: 0.875rem;
+  color: #374151;
+}
+
+.dropdown-item {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #f3f4f6;
+}
+
+/* Sidebar */
+
+
+.close-btn {
+  background: red;
+  border: none;
+  font-size: 1.5rem;
+  align-self: flex-end;
+  cursor: pointer;
+}
+
