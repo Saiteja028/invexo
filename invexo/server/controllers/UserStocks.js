@@ -3,15 +3,18 @@ import badRequestError from "../errors/badReqErr.js";
 import userStocksModel from "../models/stockData.js"
 import yahooFinance from "yahoo-finance2";
 import mongoose from "mongoose";
+import stock from "../models/stocks.js";
 // import { Promise } from "mongoose";
 /** @type {import('mongoose').Model<any>} */
 const Stocks = userStocksModel
 
 const getStocks = async (req,res)=>{
     try {
-        const userID = req.user.userID
+ 
+        const userid = req.user.userid
+  
+        const userStocks = await Stocks.find({userid});
 
-        const userStocks = await Stocks.find({userID});
         let netPL=0;
         const stocksWithRealPrice = await Promise.all(
             userStocks.map(async (stock)=>{
