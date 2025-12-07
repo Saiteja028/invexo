@@ -1,0 +1,24 @@
+pipeline{
+    agent any
+
+    stages {
+        stage('install dependancies'){
+            steps{
+                bat 'npm install'
+            }
+        }
+        stage('Build React App'){
+            steps{
+                bat 'npm run build'
+            }
+        }
+    }
+    post{
+        success{
+            echo "react app built successfully"
+        }
+        failure{
+            echo "pipeline failed!"
+        }
+    }
+}
