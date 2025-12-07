@@ -4,12 +4,16 @@ pipeline{
     stages {
         stage('install dependancies'){
             steps{
-                bat 'npm install'
+                dir('invexo/client/react') {   
+                    bat 'npm install'
+                }
             }
         }
         stage('Build React App'){
             steps{
-                bat 'npm run build'
+                dir('invexo/client/react'){
+                    bat 'npm run build'
+                }
             }
         }
     }
